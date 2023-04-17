@@ -8,15 +8,31 @@ const playerZero = document.querySelector('.player--0');
 const playerOne = document.querySelector('.player--1');
 const btnHold = document.querySelector('.btn--hold');
 const rollBtn = document.querySelector('.btn--roll');
-
+const newBtn = document.querySelector('.btn--new');
 const diceEl = document.querySelector('.dice');
-let currentScore = 0;
-scoreZero.textContent = 0;
-scoreOne.textContent = 0;
-let activePlayer = 0;
-let scores = [0, 0];
-let playing = true;
-diceEl.classList.add('hidden');
+
+let playing, currentScore, activePlayer, scores;
+
+const init = function () {
+  currentOne.textContent = 0;
+  currentZero.textContent = 0;
+  scoreZero.textContent = 0;
+  scoreOne.textContent = 0;
+
+  activePlayer = 0;
+  currentScore = 0;
+  scores = [0, 0];
+  playing = true;
+
+  diceEl.classList.add('hidden');
+  playerZero.classList.add('player--active');
+  playerOne.classList.remove('player--active');
+  playerOne.classList.remove('player--winner');
+  playerZero.classList.remove('player--winner');
+};
+
+// call init fucntion when th game loads
+init();
 
 const switchControl = function () {
   document.getElementById(`current--${activePlayer}`).textContent = 0;
@@ -68,3 +84,6 @@ btnHold.addEventListener('click', function () {
     }
   }
 });
+
+// new Game or play again
+newBtn.addEventListener('click', init);
